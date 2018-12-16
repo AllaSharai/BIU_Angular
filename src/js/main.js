@@ -1,6 +1,8 @@
 var appModule = angular.module('SomeApp', ['ui.bootstrap']);
 appModule.controller("myCtrl", function ($scope) {
 
+
+    <!--Gallery pictures  -->
     $scope.records = [
         {
             title: "Austria",
@@ -48,13 +50,27 @@ appModule.controller("myCtrl", function ($scope) {
             img: "img/image9.jpg"
         },
     ];
+
+    <!--Carousel pictures  -->
     $scope.images = [ 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
+    <!--Carousel readMore  -->
     $scope.showMe = false;
     $scope.buttonText = "Read more";
     $scope.myFunc = function() {
         $scope.showMe = !$scope.showMe;
-        $scope.buttonText = $scope.showMe ? "Hide" : "Read more"}
+        $scope.buttonText = $scope.showMe ? "Hide" : "Read more"};
 
+    <!-- SIGN IN Modal -->
+    $scope.signInForm = {login:"", password:""};
+    $scope.signIn = function() {
+        console.log(this.signInForm.login + " " + this.signInForm.password);
+    };
+
+    <!--SING UP Modal  -->
+    $scope.signUpForm = {login:"", email:"", password:""};
+    $scope.signUp = function() {
+        console.log(this.signUpForm.login + " " + this.signUpForm.email + " " + this.signUpForm.password);
+    };
 
 });

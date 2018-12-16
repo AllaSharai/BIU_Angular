@@ -33,16 +33,18 @@
 
 <body ng-controller="myCtrl">
 <header>
-    <button class="btn btn-primary" data-toggle="modal" data-target="#SingIn">SingIn</button>
-    <button class="btn btn-primary" data-toggle="modal" data-target="#SingUn">SingUp</button>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#signIn">SignIn</button>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#SingUn">SignUp</button>
 </header>
 <uib-tabset class="tabs-left" vertical="true">
     <uib-tab heading="Home" active="tabs[0].active">
-        <div class="container">
-            <video autoplay muted loop id="myVideo">
-                <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
-            </video>
+        <div class="carousel-caption">
+            <h3 class="h3-responsive">Light mask</h3>
+            <p>First text</p>
         </div>
+        <video autoplay muted loop id="myVideo">
+            <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
+        </video>
     </uib-tab>
     <uib-tab heading="Gallery" active="tabs[1].active">
         <section class="gallery-block cards-gallery">
@@ -165,7 +167,15 @@
 
     </uib-tab>
     <uib-tab heading="Game" active="tabs[2].active">
-        There will be game
+        <div class="container">
+            <div class="row">
+                <img src="img/GameLadybug.png" id="GameLadybugImg">
+            </div>
+            <div class="row">
+                <a class="btn btn-info" id="GameButton" href="ArcadeGame/Game.html">Play</a>
+            </div>
+        </div>
+
     </uib-tab>
 
 </uib-tabset>
@@ -176,34 +186,38 @@
 </footer>
 
 <!-- SIGN IN Modal -->
-<div class="modal fade" id="SingIn" tabindex="-1" role="dialog" aria-labelledby="SingInTitle" aria-hidden="true">
+<div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="signInTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="SingInTitle">Sing In</h5>
+                <h5 class="modal-title" id="signInTitle">Sing In</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form action="/action_page.php">
+            <div class="modal-body was-validated">
+                <form name="signInForm">
                     <div>
-                        <img src="img/singIn.svg" class="rounded-circle mx-auto d-block" alt="Cinque Terre" width="157"
+                        <img src="img/signIn.svg" class="rounded-circle mx-auto d-block" alt="Cinque Terre" width="157"
                              height="157">
                     </div>
                     <div class="form-group">
-                        <label for="sing-in-usr">Login:</label>
-                        <input type="text" class="form-control" id="sing-in-usr" placeholder="Enter login">
+                        <label for="sign-in-usr">Login:</label>
+                        <input type="text" class="form-control" id="sign-in-usr" placeholder="Enter login"
+                               ng-model="signInForm.login" required="required">
+                        <div class="invalid-feedback">Login should not be empty!</div>
                     </div>
+
                     <div class="form-group">
                         <label for="sign-in-pwd">Password:</label>
                         <input type="password" class="form-control" id="sign-in-pwd" placeholder="Enter password"
-                               name="pswd">
+                               name="pswd" ng-model="signInForm.password" required="required" pattern=".{4,}">
+                        <div class="invalid-feedback">Password should have 4 or more characters!</div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">SingIn</button>
+                <button type="button" class="btn btn-primary" ng-click="signIn()">SignIn</button>
             </div>
         </div>
     </div>
@@ -222,32 +236,32 @@
             <div class="modal-body">
                 <form action="/action_page.php">
                     <div>
-                        <img src="img/singUp.svg" class="rounded-circle mx-auto d-block" alt="Cinque Terre" width="157"
+                        <img src="img/signUp.svg" class="rounded-circle mx-auto d-block" alt="Cinque Terre" width="157"
                              height="157">
                     </div>
                     <div class="form-group">
-                        <label for="sign-up-usr">Login:</label>
-                        <input type="text" class="form-control" id="sign-up-usr" placeholder="Enter login">
+                        <label for="sign-in-usr">Login:</label>
+                        <input type="text" class="form-control" id="sign-up-usr" placeholder="Enter login"
+                               ng-model="signInForm.login">
+
                     </div>
-                    <div class="form-group">
+                    <div class="form-group was-validated">
                         <label for="sign-up-email">Email:</label>
                         <input type="email" class="form-control" id="sign-up-email" placeholder="Enter email"
-                               name="email">
+                               name="email" ng-model="signUpForm.email" required="required">
+                        <div class="invalid-feedback">Email is not correct!</div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group was-validated">
                         <label for="sign-up-pwd">Password:</label>
                         <input type="password" class="form-control" id="sign-up-pwd" placeholder="Enter password"
-                               name="pswd">
+                               name="pswd" ng-model="signUpForm.password" required="required" pattern=".{4,}">
+                        <div class="invalid-feedback">Password should have 4 or more characters!</div>
                     </div>
-                    <div class="form-group">
-                        <label for="sign-up-pwd-repeat">Confirm password:</label>
-                        <input type="password" class="form-control" id="sign-up-pwd-repeat" placeholder="Enter password"
-                               name="pswd">
-                    </div>
+
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-primary" ng-click="signUp()">Save</button>
             </div>
         </div>
     </div>
