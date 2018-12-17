@@ -11,6 +11,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular-animate.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular-touch.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular-messages.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -32,16 +34,20 @@
 </head>
 
 <body ng-controller="myCtrl">
+
+<script type="text/ng-template" id="generic-messages">
+    <p ng-message="required" class="error-msg">This field is required.</p>
+    <p ng-message="minlength" class="error-msg">This field is too short.</p>
+    <p ng-message="maxlength" class="error-msg">This field is too long.</p>
+</script>
+
 <header>
-    <button class="btn btn-primary" data-toggle="modal" data-target="#signIn">SignIn</button>
-    <button class="btn btn-primary" data-toggle="modal" data-target="#SingUn">SignUp</button>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#signIn" ng-show="!loggedIn">SignIn</button>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#SingUn" ng-show="!loggedIn">SignUp</button>
+    <button class="btn btn-primary" ng-show="loggedIn" ng-click="loggedIn = false">SignOut</button>
 </header>
 <uib-tabset class="tabs-left" vertical="true">
     <uib-tab heading="Home" active="tabs[0].active">
-        <div class="carousel-caption">
-            <h3 class="h3-responsive">Light mask</h3>
-            <p>First text</p>
-        </div>
         <video autoplay muted loop id="myVideo">
             <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
         </video>
@@ -97,21 +103,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <a class="carousel-control-prev" href="#myCarousel" role="button"
+                            <a class="carousel-control-prev" data-target="#myCarousel" role="button"
                                data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
                             </a>
-                            <a class="carousel-control-next" href="#myCarousel" role="button"
+                            <a class="carousel-control-next" data-target="#myCarousel" role="button"
                                data-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
                             </a>
                         </div><!-- /.carousel -->
                     </div>
-
                     <div class="col-lg-7">
-
                         <!-- Post title -->
                         <h3 class="font-weight-bold mb-3"><strong>Why You Should Travel Alone</strong></h3>
                         <!-- Excerpt -->
@@ -119,7 +123,6 @@
                             laughs that can bind us for a lifetime. So it might seem that traveling alone would be a
                             less enriching experience; without our favorite people to share it with, how could it
                             compare?</p>
-
                         <div ng-show="showMe">
                             <p>And yet many veteran travelers have memories of extraordinary, eye-opening solo trips, of
                                 glorious
@@ -130,13 +133,9 @@
                                 travel alone at least once in your life.
                             </p>
                         </div>
-
                         <button type="button" class="btn btn-primary" ng-click="myFunc()">{{buttonText}}</button>
-
-
                     </div>
                 </div>
-
                 <hr class="my-5">
                 <div class="row">
                     <div class="col-lg-7">
@@ -157,34 +156,51 @@
                             </a>
                         </div>
                     </div>
-
                 </div>
-
             </section>
-
         </div>
-
-
     </uib-tab>
-    <uib-tab heading="Game" active="tabs[2].active">
+    <uib-tab heading="Game" active="tabs[3].active">
         <div class="container">
+            <div class="row" ng-show="!loggedIn">
+                <h3>In order to play the game you need to log in</h3>
+            </div>
             <div class="row">
                 <img src="img/GameLadybug.png" id="GameLadybugImg">
             </div>
-            <div class="row">
+            <div class="row" ng-show="loggedIn">
                 <a class="btn btn-info" id="GameButton" href="ArcadeGame/Game.html">Play</a>
             </div>
         </div>
-
     </uib-tab>
-
+    <uib-tab heading="Information" active="tabs[4].active">
+        <div class="container">
+            <div>
+                <script type="text/ng-template" id="atmosphere.html">
+                    <h2>Name of the Planet: {{planet.name}}</h2>
+                    <p>Carbon Dioxide: {{planet.carbondioxide}}</p>
+                    <p>Nitrogen: {{planet.nitrogen}}</p>
+                    <p>Oxygen: {{planet.oxygen}}</p>
+                    <p>Hydrogen: {{planet.hydrogen}}</p>
+                </script>
+                <h1>Atmospheric Composition of Terrestrial Planets</h1>
+                <ul class="planet-ul">
+                    <li><a href="#!/mercury">Mercury</a></li>
+                    <li><a href="#!/venus">Venus</a></li>
+                    <li><a href="#!/earth">Earth</a></li>
+                    <li><a href="#!/mars">Mars</a></li>
+                </ul>
+                <div class="planet-container">
+                    <div class="planet-view" ng-view></div>
+                </div>
+            </div>
+        </div>
+    </uib-tab>
 </uib-tabset>
-
-
+<!-- FOOTER -->
 <footer>
     <div class="footer-copyright text-center py-3" id="footer">by Alla Chebotarska, 2018</div>
 </footer>
-
 <!-- SIGN IN Modal -->
 <div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="signInTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -195,34 +211,44 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body was-validated">
+            <div class="modal-body">
                 <form name="signInForm">
                     <div>
                         <img src="img/signIn.svg" class="rounded-circle mx-auto d-block" alt="Cinque Terre" width="157"
                              height="157">
                     </div>
                     <div class="form-group">
-                        <label for="sign-in-usr">Login:</label>
-                        <input type="text" class="form-control" id="sign-in-usr" placeholder="Enter login"
-                               ng-model="signInForm.login" required="required">
-                        <div class="invalid-feedback">Login should not be empty!</div>
+                        <label for="signInLogin">Login</label>
+                        <input type="text" class="form-control" id="signInLogin" placeholder="Enter login"
+                               name="signInLogin"
+                               ng-model="signInForm.login" ng-minlength="4" ng-maxlength="12" ng-pattern="/^\w+$/"
+                               required>
+                        <div ng-messages="signInForm.signInLogin.$error" ng-show="signInForm.signInLogin.$dirty">
+                            <p ng-message="pattern" class="error-msg">Login can only be alphanumeric with an optional
+                                underscore.</p>
+                            <p ng-message="maxlength" class="error-msg">Login cannot be longer than 12
+                                characters.</p>
+                            <div ng-messages-include="generic-messages"></div>
+                        </div>
                     </div>
-
                     <div class="form-group">
-                        <label for="sign-in-pwd">Password:</label>
-                        <input type="password" class="form-control" id="sign-in-pwd" placeholder="Enter password"
-                               name="pswd" ng-model="signInForm.password" required="required" pattern=".{4,}">
-                        <div class="invalid-feedback">Password should have 4 or more characters!</div>
+                        <label for="signInPassword">Password</label>
+                        <input type="password" class="form-control" id="signInPassword" placeholder="Password"
+                               name="signInPassword"
+                               ng-model="signInForm.password" ng-minlength="6" ng-maxlength="20" required>
+                        <div ng-messages="signInForm.signInPassword.$error"
+                             ng-show="signInForm.signInPassword.$dirty">
+                            <div ng-messages-include="generic-messages"></div>
+                        </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" ng-click="signIn()">SignIn</button>
+                <button type="button" class="btn btn-primary" ng-click="signIn()" data-dismiss="modal">SignIn</button>
             </div>
         </div>
     </div>
 </div>
-
 <!--SING UP Modal  -->
 <div class="modal fade" id="SingUn" tabindex="-1" role="dialog" aria-labelledby="SingUnTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

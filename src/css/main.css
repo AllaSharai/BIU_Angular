@@ -39,6 +39,10 @@ body {
     padding-right: 20px;
 }
 
+/* Style for Modal */
+
+
+/* ------------*/
 
 .home {
     min-height: 100%;
@@ -162,4 +166,62 @@ footer {
 
 .nav-tabs {
     background-color: rgba(255,255,255,0.8);
+}
+
+
+/* Styles for Information Page */
+
+.planet-ul {
+    padding: 0;
+    margin-top: 40px;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.planet-ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 5px 15px;
+    margin: 2px 0;
+    background: rgba(44, 33, 190, 0.8);
+    border-radius: 5px;
+}
+
+.planet-ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.planet-container {
+    position: relative;
+    margin: 10px 20px;
+}
+
+.planet-view {
+    padding: 10px;
+}
+
+.planet-view.ng-animate {
+    transition: all ease 0.4s;
+    position: absolute;
+}
+
+.planet-view.ng-enter {
+    top: 200px;
+    opacity: 0;
+}
+
+.planet-view.ng-leave,
+.planet-view.ng-enter.ng-enter-active {
+    top: 0;
+    opacity: 1;
+}
+
+.planet-view.ng-leave.ng-leave-active {
+    top: -200px;
+    opacity: 0;
+}
+
+.error-msg {
+    color: red;
 }
