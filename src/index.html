@@ -169,7 +169,7 @@
                 <img src="img/GameLadybug.png" id="GameLadybugImg">
             </div>
             <div class="row" ng-show="loggedIn">
-                <a class="btn btn-info" id="GameButton" href="ArcadeGame/Game.html">Play</a>
+                <a class="btn btn-primary" id="GameButton" href="ArcadeGame/Game.html">Play</a>
             </div>
         </div>
     </uib-tab>
@@ -261,28 +261,43 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/action_page.php">
+                <form name="signUpForm">
                     <div>
                         <img src="img/signUp.svg" class="rounded-circle mx-auto d-block" alt="Cinque Terre" width="157"
                              height="157">
                     </div>
                     <div class="form-group">
-                        <label for="sign-in-usr">Login:</label>
-                        <input type="text" class="form-control" id="sign-up-usr" placeholder="Enter login"
-                               ng-model="signInForm.login">
-
+                        <label for="signUpLogin">Login</label>
+                        <input type="text" class="form-control" id="signUpLogin" placeholder="Enter login"
+                               name="signUpLogin"
+                               ng-model="signUpForm.login" ng-minlength="4" ng-maxlength="12" ng-pattern="/^\w+$/"
+                               required>
+                        <div ng-messages="signUpForm.signUpLogin.$error" ng-show="signUpForm.signUpLogin.$dirty">
+                            <p ng-message="pattern" class="error-msg">Login can only be alphanumeric with an optional
+                                underscore.</p>
+                            <p ng-message="maxlength" class="error-msg">Login cannot be longer than 12
+                                characters.</p>
+                            <div ng-messages-include="generic-messages"></div>
+                        </div>
                     </div>
-                    <div class="form-group was-validated">
-                        <label for="sign-up-email">Email:</label>
-                        <input type="email" class="form-control" id="sign-up-email" placeholder="Enter email"
-                               name="email" ng-model="signUpForm.email" required="required">
-                        <div class="invalid-feedback">Email is not correct!</div>
+                    <div class="form-group">
+                        <label for="signUpEmail1">Email</label>
+                        <input type="email" class="form-control" id="signUpEmail1" aria-describedby="emailHelp"
+                               placeholder="Enter email" name="signUpEmail" ng-model="signUpForm.email" required>
+                        <div ng-messages="signUpForm.signUpEmail.$error" ng-show="signUpForm.signUpEmail.$dirty">
+                            <p ng-message="required" class="error-msg">This field is required.</p>
+                            <p ng-message="email" class="error-msg">Please enter a valid email address.</p>
+                        </div>
                     </div>
-                    <div class="form-group was-validated">
-                        <label for="sign-up-pwd">Password:</label>
-                        <input type="password" class="form-control" id="sign-up-pwd" placeholder="Enter password"
-                               name="pswd" ng-model="signUpForm.password" required="required" pattern=".{4,}">
-                        <div class="invalid-feedback">Password should have 4 or more characters!</div>
+                    <div class="form-group">
+                        <label for="signUpPassword">Password</label>
+                        <input type="password" class="form-control" id="signUpPassword" placeholder="Password"
+                               name="signUpPassword"
+                               ng-model="signUpForm.password" ng-minlength="6" ng-maxlength="20" required>
+                        <div ng-messages="signUpForm.signUpPassword.$error"
+                             ng-show="signUpForm.signUpPassword.$dirty">
+                            <div ng-messages-include="generic-messages"></div>
+                        </div>
                     </div>
 
                 </form>
