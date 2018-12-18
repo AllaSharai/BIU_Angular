@@ -51,7 +51,7 @@ body {
 
 /* Style the header */
 header {
-    background-color: #538cc6;
+    background: linear-gradient(to right, #3374ff 0%, #e6eeff 100%);
     text-align: right;
     font-size: 35px;
     color: white;
@@ -88,7 +88,7 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: rgba(44, 33, 190, 0.5);
+    background-color: rgba(0, 68, 204, 0.5);
     color: white;
     text-align: center;
 }
@@ -183,7 +183,7 @@ footer {
     display: inline-block;
     padding: 5px 15px;
     margin: 2px 0;
-    background: rgba(44, 33, 190, 0.8);
+    background: rgb(128, 170, 255);
     border-radius: 5px;
 }
 
@@ -220,6 +220,10 @@ footer {
 .planet-view.ng-leave.ng-leave-active {
     top: -200px;
     opacity: 0;
+}
+
+#infPageCaption{
+    color: rgb(102, 153, 255);
 }
 
 .error-msg {

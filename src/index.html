@@ -163,7 +163,7 @@
     <uib-tab heading="Game" active="tabs[3].active">
         <div class="container">
             <div class="row" ng-show="!loggedIn">
-                <h3>In order to play the game you need to log in</h3>
+                <h3 class="text-center">In order to play the game you need to log in</h3>
             </div>
             <div class="row">
                 <img src="img/GameLadybug.png" id="GameLadybugImg">
@@ -177,18 +177,19 @@
         <div class="container">
             <div>
                 <script type="text/ng-template" id="atmosphere.html">
-                    <h2>Name of the Planet: {{planet.name}}</h2>
-                    <p>Carbon Dioxide: {{planet.carbondioxide}}</p>
-                    <p>Nitrogen: {{planet.nitrogen}}</p>
-                    <p>Oxygen: {{planet.oxygen}}</p>
-                    <p>Hydrogen: {{planet.hydrogen}}</p>
+                    <p> <b> Name of the country: </b>{{country.name}} </p>
+                    <p><b>Capital of the country:</b> {{country.capital}}</p>
+                    <p><b> Languages: </b>{{country.languages}}</p>
+                    <p><b>Area:</b> {{country.area}}</p>
+                    <p><b>Population:</b> {{country.population}}</p>
+                    <p>Picture: {{planet.picture}}</p>
                 </script>
-                <h1>Atmospheric Composition of Terrestrial Planets</h1>
+                <h1 class="text-center" id="infPageCaption">Information about countries</h1>
                 <ul class="planet-ul">
-                    <li><a href="#!/mercury">Mercury</a></li>
-                    <li><a href="#!/venus">Venus</a></li>
-                    <li><a href="#!/earth">Earth</a></li>
-                    <li><a href="#!/mars">Mars</a></li>
+                    <li><a href="#!/norway">Norway</a></li>
+                    <li><a href="#!/sweden">Sweden</a></li>
+                    <li><a href="#!/finland">Finland</a></li>
+                    <li><a href="#!/ireland">Ireland</a></li>
                 </ul>
                 <div class="planet-container">
                     <div class="planet-view" ng-view></div>

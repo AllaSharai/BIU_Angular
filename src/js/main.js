@@ -99,60 +99,64 @@ app.controller("myCtrl", function ($scope) {
 
 app.config(function ($routeProvider) {
     $routeProvider
-        .when('/mercury', {
+        .when('/norway', {
             templateUrl: "atmosphere.html",
-            controller: "mercuryCtrl"
+            controller: "norwayCtrl"
         })
-        .when('/venus', {
+        .when('/sweden', {
             templateUrl: "atmosphere.html",
-            controller: "venusCtrl"
+            controller: "swedenCtrl"
         })
-        .when('/earth', {
+        .when('/finland', {
             templateUrl: "atmosphere.html",
-            controller: "earthCtrl"
+            controller: "finlandCtrl"
         })
-        .when('/mars', {
+        .when('/ireland', {
             templateUrl: "atmosphere.html",
-            controller: "marsCtrl"
+            controller: "irelandCtrl"
         })
 });
 
-app.controller("mercuryCtrl", function ($scope, $route) {
-    $scope.planet = {
-        name: 'Mercury',
-        carbondioxide: 'Trace Amount',
-        nitrogen: 'Trace Amount',
-        oxygen: '42%',
-        hydrogen: '22%'
+app.controller("norwayCtrl", function ($scope, $route) {
+    $scope.country = {
+        name: 'Norway',
+        capital: 'Oslo',
+        languages: 'Norwegian, Sami',
+        area: '385,203 km2',
+        population: '5,323,933',
+        picture: "img/informationPageImg/norway.jpg"
     }
 });
 
-app.controller("venusCtrl", function ($scope, $route) {
-    $scope.planet = {
-        name: 'Venus',
-        carbondioxide: '96.5%',
-        nitrogen: '3.5%',
-        oxygen: 'Almost None',
-        hydrogen: 'Almost None'
+app.controller("swedenCtrl", function ($scope, $route) {
+    $scope.country = {
+        name: 'Sweden',
+        capital: 'Stockholm',
+        languages: 'Swedish, Finnish, Meankieli',
+        area: '450,295 km2',
+        population: '10,215,250',
+        picture: "img/informationPageImg/sweden.jpg"
     }
 });
 
-app.controller("earthCtrl", function ($scope, $route) {
-    $scope.planet = {
-        name: 'Earth',
-        carbondioxide: '0.038%',
-        nitrogen: '78.1%',
-        oxygen: '21%',
-        hydrogen: 'Almost None'
+app.controller("finlandCtrl", function ($scope, $route) {
+    $scope.country = {
+        name: 'Finland',
+        capital: 'Helsinki',
+        languages: 'Finnish, Swedish',
+        area: '338,424 km2',
+        population: '5,520,535 ',
+        picture: "img/informationPageImg/finland.jpg"
     }
 });
 
-app.controller("marsCtrl", function ($scope, $route) {
-    $scope.planet = {
-        name: 'Mars',
-        carbondioxide: '95.7%',
-        nitrogen: '2.7%',
-        oxygen: '0.2%',
-        hydrogen: 'Almost None'
+app.controller("irelandCtrl", function ($scope, $route) {
+    $scope.country = {
+        name: 'Republic of Ireland',
+        capital: 'Dublin',
+        languages: 'Irish, English',
+        area: '84,421 km2',
+        population: '6 399 105',
+        picture: "img/informationPageImg/ireland.jpg"
     }
 });
