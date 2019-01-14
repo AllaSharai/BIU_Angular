@@ -26,27 +26,10 @@ body {
     font-family: Arial;
     min-width: 100%;
     min-height: 100%;
-    background: red;
 }
 
-.text-block {
-    position: absolute;
-    bottom: 0px;
-    right: 200px;
-    background-color: black;
-    color: white;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-/* Style for Modal */
-
-
-/* ------------*/
-
-.home {
-    min-height: 100%;
-    min-width: 100%;
+.nav-tabs {
+    background-color: rgba(255,255,255,0.8);
 }
 
 /* Style the header */
@@ -55,32 +38,7 @@ header {
     text-align: right;
     font-size: 35px;
     color: white;
-}
-
-
-/* Style the GamePage */
-#GameLadybugImg{
-    display: block;
-    margin-top: 50px;
-    margin-left: auto;
-    margin-right: auto;
-
-}
-
-#GameButton{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    background: rgb(128, 170, 255);
-}
-
-.fade {
-    background-color: rgba(81, 99, 109, 0.5);
-}
-
-.search-container {
-    max-width: 50%;
-    margin: 0 auto;
+    padding-right: 15px;
 }
 
 /* Style the footer */
@@ -94,8 +52,23 @@ footer {
     text-align: center;
 }
 
+/* Style the Home Page */
 
-/* Style for gallery */
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -100;
+}
+/* Style for Gallery Page */
+
+.search-container {
+    max-width: 50%;
+    margin: 0 auto;
+}
+
 .gallery-block {
     padding-bottom: 60px;
     padding-top: 60px;
@@ -153,21 +126,61 @@ footer {
         box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15) !important;
     }
 }
+/* -----------------------------------------------------*/
 
-/*Video*/
-
-#myVideo {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: -100;
+/* Style for Carousel Page */
+.carousel-block {
+    padding-bottom: 60px;
+    padding-top: 60px;
 }
 
-.nav-tabs {
-    background-color: rgba(255,255,255,0.8);
+.carousel-block .heading {
+    margin-bottom: 50px;
+    text-align: center;
 }
+
+.carousel-block .heading h2 {
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+
+/* Style the Game Page */
+#GameLadybugImg{
+    display: block;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#GameButton{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgb(128, 170, 255);
+}
+
+.game-block {
+    padding-bottom: 60px;
+    padding-top: 60px;
+}
+
+.game-block .heading {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.game-block .heading h2 {
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+
+.fade {
+    background-color: rgba(81, 99, 109, 0.5);
+}
+
 
 
 /* Styles for Information Page */
@@ -223,8 +236,20 @@ footer {
     opacity: 0;
 }
 
-#infPageCaption{
-    color: rgb(102, 153, 255);
+.information-block {
+    padding-bottom: 60px;
+    padding-top: 60px;
+}
+
+.information-block .heading {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.information-block .heading h2 {
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-transform: uppercase;
 }
 
 .error-msg {

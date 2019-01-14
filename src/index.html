@@ -44,7 +44,8 @@
 <header>
     <button class="btn btn-primary" data-toggle="modal" data-target="#signIn" ng-show="!loggedIn">SignIn</button>
     <button class="btn btn-primary" data-toggle="modal" data-target="#SingUn" ng-show="!loggedIn">SignUp</button>
-    <button class="btn btn-primary" ng-show="loggedIn" ng-click="loggedIn = false">SignOut</button>
+    <span ng-show="loggedIn" ng-bind="currentUser"></span>
+    <button class="btn btn-primary" ng-show="loggedIn" ng-click="loggedIn = false; currentUser = ''">SignOut</button>
 </header>
 <uib-tabset class="tabs-left" vertical="true">
     <uib-tab heading="Home" active="tabs[0].active">
@@ -82,14 +83,14 @@
         </section>
     </uib-tab>
     <uib-tab heading="Carousel" active="tabs[2].active">
-        <div class="container">
-            <section class="my-5">
-                <h2 class="h1-responsive font-weight-bold text-center my-5">Travels</h2>
+        <section class="carousel-block">
+            <div class="container">
+                <div class="heading">
+                    <h2>Travels</h2>
+                </div>
                 <div class="row">
                     <div class="col-lg-5">
-                        <!-- Carousel ================================================== -->
                         <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                            <!-- Indicators -->
                             <ol class="carousel-indicators">
                                 <li data-target="#myCarousel" ng-repeat="img in images" ng-class="{active: (img === 1)}"
                                     data-slide-to="{{$index}}"></li>
@@ -113,12 +114,12 @@
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
                             </a>
-                        </div><!-- /.carousel -->
+                        </div>
                     </div>
                     <div class="col-lg-7">
-                        <!-- Post title -->
-                        <h3 class="font-weight-bold mb-3"><strong>Why You Should Travel Alone</strong></h3>
-                        <!-- Excerpt -->
+                        <div class="heading">
+                            <h2 class="mb-3"><strong>Why You Should Travel Alone</strong></h2>
+                        </div>
                         <p>Traveling with family and friends can be incredibly rewarding, offering experiences and
                             laughs that can bind us for a lifetime. So it might seem that traveling alone would be a
                             less enriching experience; without our favorite people to share it with, how could it
@@ -139,7 +140,9 @@
                 <hr class="my-5">
                 <div class="row">
                     <div class="col-lg-7">
-                        <h3 class="font-weight-bold mb-3"><strong>Title of the news</strong></h3>
+                        <div class="heading">
+                            <h2 class="mb-3"><strong>Title of the news</strong></h2>
+                        </div>
                         <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
                             voluptatum
                             deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate
@@ -147,7 +150,6 @@
                             provident.</p>
                     </div>
                     <div class="col-lg-5">
-
                         <div class="view overlay rounded z-depth-2 waves-light" mdbWavesEffect>
                             <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/img%20(34).jpg"
                                  alt="Sample image">
@@ -157,34 +159,45 @@
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
     </uib-tab>
     <uib-tab heading="Game" active="tabs[3].active">
-        <div class="container">
-            <div class="row" ng-show="!loggedIn">
-                <h3 class="text-center">In order to play the game you need to log in</h3>
+        <section class="game-block">
+            <div class="container">
+                <div class="heading" ng-show="!loggedIn">
+                    <h2>In order to play the game you need to log in</h2>
+                </div>
+                <div class="row">
+                    <img src="img/GameLadybug.png" id="GameLadybugImg">
+                </div>
+                <div class="row" ng-show="loggedIn">
+                    <a class="btn btn-primary" id="GameButton" href="ArcadeGame/Game.html" target="_blank">Play</a>
+                </div>
             </div>
-            <div class="row">
-                <img src="img/GameLadybug.png" id="GameLadybugImg">
-            </div>
-            <div class="row" ng-show="loggedIn">
-                <a class="btn btn-primary" id="GameButton" href="ArcadeGame/Game.html">Play</a>
-            </div>
-        </div>
+        </section>
     </uib-tab>
     <uib-tab heading="Information" active="tabs[4].active">
-        <div class="container">
-            <div>
+        <section class="information-block">
+            <div class="container">
                 <script type="text/ng-template" id="atmosphere.html">
-                    <p> <b> Name of the country: </b>{{country.name}} </p>
-                    <p><b>Capital of the country:</b> {{country.capital}}</p>
-                    <p><b> Languages: </b>{{country.languages}}</p>
-                    <p><b>Area:</b> {{country.area}}</p>
-                    <p><b>Population:</b> {{country.population}}</p>
-                    <p>Picture: {{planet.picture}}</p>
+                    <article class="row">
+                        <div class="col-md-4">
+                            <p><b> Name of the country: </b>{{country.name}} </p>
+                            <p><b>Capital of the country:</b> {{country.capital}}</p>
+                            <p><b> Languages: </b>{{country.languages}}</p>
+                            <p><b>Area:</b> {{country.area}}</p>
+                            <p><b>Population:</b> {{country.population}}</p>
+                        </div>
+                        <div class="col-md-8">
+                            <img class="img-fluid " src="{{country.picture}}">
+                        </div>
+                    </article>
                 </script>
-                <h1 class="text-center" id="infPageCaption">Information about countries</h1>
+                <div class="heading">
+                    <h2>Information about countries</h2>
+                </div>
+
                 <ul class="planet-ul">
                     <li><a href="#!/norway">Norway</a></li>
                     <li><a href="#!/sweden">Sweden</a></li>
@@ -195,7 +208,7 @@
                     <div class="planet-view" ng-view></div>
                 </div>
             </div>
-        </div>
+        </section>
     </uib-tab>
 </uib-tabset>
 <!-- FOOTER -->
@@ -303,7 +316,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" ng-click="signUp()">Save</button>
+                <button type="button" class="btn btn-primary" ng-click="signUp()" data-dismiss="modal">Save</button>
             </div>
         </div>
     </div>

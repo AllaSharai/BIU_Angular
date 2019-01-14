@@ -3,6 +3,7 @@ var app = angular.module('SomeApp', ['ui.bootstrap', 'ngRoute', 'ngMessages', 'n
 app.controller("myCtrl", function ($scope) {
 
     $scope.loggedIn = false;
+    $scope.currentUser = "";
 
     $scope.users = [{
         login: "alla",
@@ -55,8 +56,8 @@ app.controller("myCtrl", function ($scope) {
             img: "img/image8.jpg"
         },
         {
-            title: "Norway",
-            desc: "This photo was taken somewhere in Norway",
+            title: "Tenerife",
+            desc: "This photo was taken somewhere in Tenerife",
             img: "img/image9.jpg"
         },
     ];
@@ -79,13 +80,16 @@ app.controller("myCtrl", function ($scope) {
 
         if (this.users.some(e => e.login === this.signInForm.login && e.password === this.signInForm.password)) {
             this.loggedIn = true;
-
+            var user = {
+                login: this.signInForm.login,
+                password: this.signInForm.password,
+            };
+            this.currentUser = user.login;
         } else {
-            this.signInForm.login = "";
-            this.signInForm.password = "";
             alert("Incorrect login or password!");
         }
-
+        this.signInForm.login = "";
+        this.signInForm.password = "";
         console.log(this.loggedIn);
     };
 
@@ -93,6 +97,25 @@ app.controller("myCtrl", function ($scope) {
     $scope.signUpForm = {login: "", email: "", password: ""};
     $scope.signUp = function () {
         console.log(this.signUpForm.login + " " + this.signUpForm.email + " " + this.signUpForm.password);
+
+        var user = {
+            login: this.signUpForm.login,
+            password: this.signUpForm.password,
+            email: this.signUpForm.email
+        };
+
+        this.signUpForm.login = "";
+        this.signUpForm.password = "";
+        this.signUpForm.email = "";
+
+        if (user.login === undefined ||
+            user.password === undefined ||
+            user.email === undefined) {
+            alert("Please fill the form correctly!");
+            return;
+        }
+        this.users.push(user);
+        this.currentUser = user.login;
     };
 
 });
