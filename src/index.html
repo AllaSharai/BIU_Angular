@@ -5,6 +5,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>All over the world</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -44,7 +45,7 @@
 <header>
     <button class="btn btn-primary" data-toggle="modal" data-target="#signIn" ng-show="!loggedIn">SignIn</button>
     <button class="btn btn-primary" data-toggle="modal" data-target="#SingUn" ng-show="!loggedIn">SignUp</button>
-    <span ng-show="loggedIn" ng-bind="currentUser"></span>
+    <span ng-show="loggedIn">Hello, </span><span ng-show="loggedIn" ng-bind="currentUser"></span>
     <button class="btn btn-primary" ng-show="loggedIn" ng-click="loggedIn = false; currentUser = ''">SignOut</button>
 </header>
 <uib-tabset class="tabs-left" vertical="true">
@@ -169,7 +170,9 @@
                     <h2>In order to play the game you need to log in</h2>
                 </div>
                 <div class="row">
-                    <img src="img/GameLadybug.png" id="GameLadybugImg">
+                    <div class="col-md-12">
+                        <img src="img/GameLadybug.png" id="GameLadybugImg">
+                    </div>
                 </div>
                 <div class="row" ng-show="loggedIn">
                     <a class="btn btn-primary" id="GameButton" href="ArcadeGame/Game.html" target="_blank">Play</a>
@@ -182,14 +185,14 @@
             <div class="container">
                 <script type="text/ng-template" id="atmosphere.html">
                     <article class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <p><b> Name of the country: </b>{{country.name}} </p>
                             <p><b>Capital of the country:</b> {{country.capital}}</p>
                             <p><b> Languages: </b>{{country.languages}}</p>
                             <p><b>Area:</b> {{country.area}}</p>
                             <p><b>Population:</b> {{country.population}}</p>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <img class="img-fluid " src="{{country.picture}}">
                         </div>
                     </article>
